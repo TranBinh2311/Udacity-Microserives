@@ -1,7 +1,7 @@
 name: udacit-project-3
 on:
   push:
-    banches: [master]
+    branches: [master]
 
 jobs:
   docker:
