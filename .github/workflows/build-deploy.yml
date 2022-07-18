@@ -1,0 +1,11 @@
+name: udacit-project-3
+on:
+  push:
+    banches: [master]
+
+jobs:
+  docker:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: Checkout
+        user: actions/checkout@v2
