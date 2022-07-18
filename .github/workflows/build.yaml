@@ -28,7 +28,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-feed
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed
 
       - name: Build and Push Udagram USER
         uses: docker/build-push-action@v2
@@ -38,7 +38,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-user
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-api-user
 
       - name: Build and Push Udagram Front end
         uses: docker/build-push-action@v2
@@ -58,7 +58,7 @@ jobs:
           file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/reverseproxy
 
       - name: Verify
         run: echo ${{ steps.docker_build_reverseproxy.outputs.digest }}
