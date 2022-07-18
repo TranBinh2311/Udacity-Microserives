@@ -25,7 +25,7 @@ jobs:
         id: docker_build_feed
         with:
           context: ./udagram-api-feed
-          file: ./Dockerfile
+          file: ./udagram-api-feed/Dockerfile
           builder: ${{steps.buildx.outputs.name}}
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/udagram-api-feed
@@ -35,7 +35,7 @@ jobs:
         id: docker_build_user
         with:
           context: ./udagram-api-user
-          file: ./Dockerfile
+          file: ./udagram-api-user/Dockerfile
           builder: ${{steps.buildx.outputs.name}}
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/udagram-api-user
@@ -45,7 +45,7 @@ jobs:
         id: docker_build_fronend
         with:
           context: ./udagram-frontend
-          file: ./Dockerfile
+          file: ./udagram-api-frontend/Dockerfile
           builder: ${{steps.buildx.outputs.name}}
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/udagram-frontend
@@ -55,7 +55,7 @@ jobs:
         id: docker_build_reverseproxy
         with:
           context: ./udagram-reverseproxy
-          file: ./Dockerfile
+          file: ./udagram-reverseproxy/Dockerfile
           builder: ${{steps.buildx.outputs.name}}
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/reverseproxy
