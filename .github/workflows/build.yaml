@@ -20,15 +20,45 @@ jobs:
         uses: docker/setup-buildx-action@v1
         id: buildx
 
-      - name: Build and Push Docker Image
+      - name: Build and Push Udagram Feed
         uses: docker/build-push-action@v2
-        id: docker_build
+        id: docker_build_feed
         with:
-          context: ./
-          file: ./docker-compose-build.yaml
+          context: ./udagram-api-feed
+          file: ./Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
-          tags: ${ secrets.DOCKERHUB_USERNAME }}/udacity-project-3
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-feed
+
+      - name: Build and Push Udagram USER
+        uses: docker/build-push-action@v2
+        id: docker_build_user
+        with:
+          context: ./udagram-api-user
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-user
+
+      - name: Build and Push Udagram Front end
+        uses: docker/build-push-action@v2
+        id: docker_build_fronend
+        with:
+          context: ./udagram-frontend
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-frontend
+
+      - name: Build and Push Udagram Reverseproxy
+        uses: docker/build-push-action@v2
+        id: docker_build_reverseproxy
+        with:
+          context: ./udagram-reverseproxy
+          file: ./Dockerfile
+          builder: ${{ steps.buildx.outputs.name }}
+          push: true
+          tags: ${ secrets.DOCKERHUB_USERNAME }}/udagram-reverseproxy
 
       - name: Verify
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: echo ${{ steps.docker_build_reverseproxy.outputs.digest }}
