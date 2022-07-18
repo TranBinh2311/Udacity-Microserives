@@ -45,7 +45,7 @@ jobs:
         id: docker_build_fronend
         with:
           context: ./udagram-frontend
-          file: ./udagram-api-frontend/Dockerfile
+          file: ./udagram-frontend/Dockerfile
           builder: ${{steps.buildx.outputs.name}}
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/udagram-frontend
